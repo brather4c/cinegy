@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cinegy</title>
+    <meta mark="set" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.min.css" />
+
+    <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="libs/fancybox/jquery.fancybox.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+    
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="libs/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="js/main.js"></script>
+</head>
+<body >
+    <div id="example">
+        <div class="content" id="content">
+            <div class="back-button">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 583.002 583.001" style="enable-background:new 0 0 583.002 583.001;" xml:space="preserve">
+                <g>
+                  <path d="M86.671,190.214C55.459,211.023-14.921,255.086,2.827,302.823c19.584,52.632,90.576,94.86,134.64,124.848   c25.092,17.137,111.996,78.948,141.984,41.616c1.836-1.836,2.448-4.896,1.836-7.344c12.853-25.092,4.896-64.872,4.896-91.8   c0-4.896,0-9.792,0-14.688c91.188,0.612,189.108,30.601,277.236,4.284c5.508-1.836,7.956-5.508,8.568-9.792   c0.612,0,1.224-0.612,1.836-0.612c13.464-7.956,7.956-39.168,8.568-52.02c0-23.256,0.611-47.736-4.284-70.992   c-1.225-5.508-4.896-8.568-9.181-9.18c-1.836-1.837-4.896-3.061-8.567-3.061c-93.024,1.224-184.212,12.24-277.236,6.732   c0-29.988,1.224-59.364,6.12-88.74c0.612-3.672-0.612-6.732-1.836-9.18c6.12-7.345-0.612-22.645-14.076-20.809   C207.847,110.042,140.527,154.107,86.671,190.214z" fill="currentColor"/>
+                </g>
+              </svg>
+            </div>
+            <div class="logo">
+              <a href="http://cinegy.arc4decor.com.ua/">
+                <img src="/images/youtube.png" alt="">
+              </a>
+            </div>
+            <div class="search-block">
+                <form action="" id="youtubeSearch">
+                     <input type="text" name="search" id="search" >
+                     <label for="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <g>
+                                <path d="M497.938,430.062l-62.28-62.28c-18.156,26.655-41.22,49.719-67.875,67.875l62.28,62.28c18.75,18.75,49.156,18.75,67.875,0    C516.688,479.188,516.688,448.812,497.938,430.062z" fill="currentColor"/>
+                                <path d="M448,224C448,100.281,347.719,0,224,0S0,100.281,0,224s100.281,224,224,224C347.719,448,448,347.719,448,224z M224,400    c-97.047,0-176-78.969-176-176c0-97.047,78.953-176,176-176c97.031,0,176,78.953,176,176C400,321.031,321.031,400,224,400z" fill="currentColor"/>
+                            </g>
+                        </svg>
+                     </label>
+                     <input type="submit" id="button">
+                </form>
+            </div>
+            <div id="results" class="myclear">
+                <div class="wrapper">
+                   <aside class="left-side">
+                        <div class="wrapper">
+                            
+                        </div>
+                   </aside>
+                   <aside class="right-side">
+
+                   </aside>
+               </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-kendo-tmpl" id="searchlist">
+        <div class="item myclear" id="#:id.videoId#">
+            <div class="video-preview" >
+                <img src="#:snippet.thumbnails.high.url#" alt="">
+            </div>
+            <h2 class="title-video">#:snippet.title#</h2>
+            <span class="author">Author: <span>#:snippet.channelTitle#</span></span>
+            <span class="date">Posted: <span>#= kendo.toString(kendo.parseDate(snippet.publishedAt), 'dd MMMM yyyy')#</span></span>
+        </div>
+
+    </script>    
+    <script type="text/x-kendo-tmpl" id="detail">
+        <div class="wrapper" data-id="#:id.videoId#">
+            <div class="main-info myclear">
+               <div class="img-wrapper">
+                   <img src="#:snippet.thumbnails.high.url#" alt="">                  
+               </div>
+               <div class="info-video">  
+                    <h2 class="title-video">#:snippet.title#</h2>
+                    <span class="date">Posted: <span>#= kendo.toString(kendo.parseDate(snippet.publishedAt), 'dd MMMM yyyy')#</span></span>
+                    <span class="author">Author: <span>#:snippet.channelTitle#</span></span>
+                    <a href="//www.youtube.com/embed/#:id.videoId#" class="play">play</a>
+                </div>
+            </div>    
+            <div class="description">
+                <span>Description:</span>    
+                <p>#:snippet.description#</p>
+            </div> 
+            <div class="description comments">
+                <span>Comments:</span>    
+            </div>  
+            <section>
+                  <div id="alert"></div>  
+                  <textarea id="description" name="description" type="text"></textarea>
+                  <button id="add">add comment</button>
+            </section>
+            
+
+        </div>          
+    </script>  
+    
+</body>
+</html>
